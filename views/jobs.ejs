@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Find Jobs | JobVerse</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="/">
+                <img
+                    src="/images/jobverse-logo.png"
+                    alt="JobVerse"
+                >
+            </a>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a
+                href="/jobs"
+                class="active"
+            >
+                Find Jobs
+            </a>
+
+            <a href="/companies">
+                Companies
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/login"
+                class="login-btn"
+            >
+                Sign In
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main class="jobs-page">
+
+
+        <!-- =========================
+             HERO
+        ========================== -->
+
+        <section class="jobs-hero premium-jobs-hero">
+
+            <div class="hero-badge">
+                <span class="hero-badge-dot"></span>
+                FIND YOUR NEXT OPPORTUNITY
+            </div>
+
+
+            <h1>
+                Find work that
+                <span>moves you forward.</span>
+            </h1>
+
+
+            <p>
+                Discover opportunities that match your
+                skills, goals, and ambitions.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             SEARCH PANEL
+        ========================== -->
+
+        <section class="job-search-box premium-search-box">
+
+
+            <div class="search-panel-top">
+
+                <div>
+
+                    <h2>
+                        Find your next role
+                    </h2>
+
+                    <p>
+                        Search by role, skill, location, or job type.
+                    </p>
+
+                </div>
+
+
+                <span class="search-panel-badge">
+                    <span>✦</span>
+                    Smart search
+                </span>
+
+            </div>
+
+
+
+            <form
+                action="/jobs"
+                method="GET"
+                class="premium-search-form"
+            >
+
+
+                <!-- =====================
+                     KEYWORD
+                ====================== -->
+
+                <div class="primary-search-field">
+
+                    <label for="keyword">
+                        What are you looking for?
+                    </label>
+
+
+                    <div class="premium-input">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="11"
+                                cy="11"
+                                r="7"
+                            ></circle>
+
+                            <path
+                                d="m20 20-4-4"
+                            ></path>
+
+                        </svg>
+
+
+                        <input
+                            type="text"
+                            id="keyword"
+                            name="keyword"
+                            value="<%= keyword %>"
+                            placeholder="Job title, skill or keyword"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================
+                     LOCATION
+                ====================== -->
+
+                <div class="primary-search-field">
+
+                    <label for="location">
+                        Where?
+                    </label>
+
+
+                    <div class="premium-input">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"
+                            ></path>
+
+                            <circle
+                                cx="12"
+                                cy="10"
+                                r="2.5"
+                            ></circle>
+
+                        </svg>
+
+
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            value="<%= location %>"
+                            placeholder="City or location"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =====================
+                     SEARCH BUTTON
+                ====================== -->
+
+                <button
+                    type="submit"
+                    class="premium-search-button"
+                >
+
+                    <span>
+                        Search jobs
+                    </span>
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M5 12h14"
+                        ></path>
+
+                        <path
+                            d="m13 6 6 6-6 6"
+                        ></path>
+
+                    </svg>
+
+                </button>
+
+
+
+                <!-- =====================
+                     FILTERS
+                ====================== -->
+
+                <div class="search-filters">
+
+
+                    <!-- JOB TYPE -->
+
+                    <div class="filter-field">
+
+                        <label for="jobType">
+                            Job type
+                        </label>
+
+
+                        <div class="filter-select">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <rect
+                                    x="3"
+                                    y="7"
+                                    width="18"
+                                    height="13"
+                                    rx="2"
+                                ></rect>
+
+                                <path
+                                    d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                                ></path>
+
+                            </svg>
+
+
+                            <select
+                                id="jobType"
+                                name="jobType"
+                            >
+
+                                <option value="">
+                                    Any job type
+                                </option>
+
+                                <option
+                                    value="Full-time"
+                                    <%= jobType === "Full-time"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Full-time
+                                </option>
+
+                                <option
+                                    value="Part-time"
+                                    <%= jobType === "Part-time"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Part-time
+                                </option>
+
+                                <option
+                                    value="Internship"
+                                    <%= jobType === "Internship"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Internship
+                                </option>
+
+                                <option
+                                    value="Contract"
+                                    <%= jobType === "Contract"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Contract
+                                </option>
+
+                                <option
+                                    value="Remote"
+                                    <%= jobType === "Remote"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Remote
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CATEGORY -->
+
+                    <div class="filter-field">
+
+                        <label for="category">
+                            Category
+                        </label>
+
+
+                        <div class="filter-select">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    d="M4 5h16v4H4z"
+                                ></path>
+
+                                <path
+                                    d="M4 15h16v4H4z"
+                                ></path>
+
+                            </svg>
+
+
+                            <select
+                                id="category"
+                                name="category"
+                            >
+
+                                <option value="">
+                                    Any category
+                                </option>
+
+                                <option
+                                    value="Software Development"
+                                    <%= category === "Software Development"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Software Development
+                                </option>
+
+                                <option
+                                    value="Data Science"
+                                    <%= category === "Data Science"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Data Science
+                                </option>
+
+                                <option
+                                    value="Web Development"
+                                    <%= category === "Web Development"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Web Development
+                                </option>
+
+                                <option
+                                    value="AI"
+                                    <%= category === "AI"
+                                        ? "selected"
+                                        : "" %>
+                                >
+                                    Artificial Intelligence
+                                </option>
+
+                                <option
+                                    value="Marketing"
+                                    <%= category === "Marketing"
+                                        ? "selected"
+                                        : "" %>
+                                    >
+                                    Marketing
+                                </option>
+
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RESET -->
+
+                    <% if (jobType || category) { %>
+
+                        <a
+                            href="/jobs?keyword=<%= encodeURIComponent(keyword) %>&location=<%= encodeURIComponent(location) %>"
+                            class="clear-filters"
+                        >
+                            Clear filters
+                        </a>
+
+                    <% } %>
+
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- =========================
+             RESULTS
+        ========================== -->
+
+        <section class="jobs-results">
+
+
+            <div class="results-heading">
+
+
+                <div>
+
+                    <span class="results-eyebrow">
+                        JOB OPPORTUNITIES
+                    </span>
+
+
+                    <h2>
+
+                        Jobs for
+
+                        <span>
+                            <%= keyword %>
+                        </span>
+
+                    </h2>
+
+
+                    <p>
+
+                        Showing opportunities in
+
+                        <strong>
+                            <%= location %>
+                        </strong>
+
+                    </p>
+
+                </div>
+
+
+                <div class="results-count">
+
+                    <strong>
+                        <%= jobs.length %>
+                    </strong>
+
+                    <span>
+                        <%= jobs.length === 1
+                            ? "opportunity"
+                            : "opportunities" %>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =========================
+                 EMPTY STATE
+            ========================== -->
+
+            <% if (jobs.length === 0) { %>
+
+
+                <div class="premium-empty-state">
+
+                    <div class="empty-search-icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+
+                            <circle
+                                cx="11"
+                                cy="11"
+                                r="7"
+                            ></circle>
+
+                            <path
+                                d="m20 20-4-4"
+                            ></path>
+
+                        </svg>
+
+                    </div>
+
+
+                    <h3>
+                        No opportunities found
+                    </h3>
+
+
+                    <p>
+                        Try a different keyword, location,
+                        or remove one of your filters.
+                    </p>
+
+
+                    <a
+                        href="/jobs"
+                        class="dashboard-primary-btn"
+                    >
+                        Reset search
+                    </a>
+
+                </div>
+
+
+            <% } else { %>
+
+
+
+                <!-- =========================
+                     JOB LIST
+                ========================== -->
+
+                <div class="jobs-list">
+
+
+                    <% jobs.forEach(job => { %>
+
+
+                        <article class="job-card premium-job-card">
+
+
+                            <!-- TOP -->
+
+                            <div class="job-card-top">
+
+
+                                <div class="company-logo-placeholder premium-company-icon">
+                                    💼
+                                </div>
+
+
+                                <div class="job-main-info">
+
+                                    <h3>
+                                        <%= job.title %>
+                                    </h3>
+
+
+                                    <p class="job-company">
+
+                                        <%= job.company?.display_name ||
+                                            "Company not specified" %>
+
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- META -->
+
+                            <div class="job-meta">
+
+                                <span>
+                                    📍
+                                    <%= job.location?.display_name ||
+                                        "Location not specified" %>
+                                </span>
+
+
+                                <% if (job.salary_min) { %>
+
+                                    <span>
+
+                                        💰
+
+                                        <%= Number(
+                                            job.salary_min
+                                        ).toLocaleString() %>
+
+                                        -
+
+                                        <%= job.salary_max
+                                            ? Number(
+                                                job.salary_max
+                                            ).toLocaleString()
+                                            : "" %>
+
+                                    </span>
+
+                                <% } %>
+
+                            </div>
+
+
+
+                            <!-- DESCRIPTION -->
+
+                            <p class="job-description">
+
+                                <%= job.description
+
+                                    ? (
+                                        job.description.length > 180
+                                            ? job.description.substring(
+                                                0,
+                                                180
+                                            ) + "..."
+                                            : job.description
+                                      )
+
+                                    : "View the complete job description and requirements."
+                                %>
+
+                            </p>
+
+
+
+                            <!-- FOOTER -->
+
+                            <div class="job-card-footer">
+
+                                <span class="external-job-label">
+                                    External listing
+                                </span>
+
+
+                                <a
+                                    href="/jobs/details?title=<%= encodeURIComponent(job.title) %>&company=<%= encodeURIComponent(job.company?.display_name || 'Company not specified') %>&location=<%= encodeURIComponent(job.location?.display_name || 'Location not specified') %>&description=<%= encodeURIComponent(job.description || '') %>&salaryMin=<%= job.salary_min || '' %>&salaryMax=<%= job.salary_max || '' %>&redirectUrl=<%= encodeURIComponent(job.redirect_url || '') %>"
+                                    class="view-job-btn"
+                                >
+
+                                    View details
+
+                                    <span>
+                                        →
+                                    </span>
+
+                                </a>
+
+                            </div>
+
+
+                        </article>
+
+
+                    <% }); %>
+
+
+                </div>
+
+
+            <% } %>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

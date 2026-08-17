@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Companies | JobVerse</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+            <img src="/images/JobVerse-logo.png" alt="JobVerse">
+        </a>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/jobs">
+                Find Jobs
+            </a>
+
+            <a href="/companies" class="active">
+                Companies
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <a href="/login" class="login-btn">
+                Log In
+            </a>
+
+            <a href="/register" class="signup-btn">
+                Sign Up
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="companies-hero">
+
+        <span class="section-label">
+            DISCOVER COMPANIES
+        </span>
+
+
+        <h1>
+
+            Find your next
+
+            <span>
+                great company.
+            </span>
+
+        </h1>
+
+
+        <p>
+            Explore companies hiring on JobVerse and discover
+            opportunities that match your career goals.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= COMPANIES ================= -->
+
+    <section class="companies-section">
+
+
+        <!-- Decide whether to show all companies -->
+
+        <%
+            const showAll = view === "all";
+
+            const displayedCompanies = showAll
+                ? companies
+                : companies.slice(0, 6);
+        %>
+
+
+
+        <!-- HEADING -->
+
+        <div class="companies-heading">
+
+            <div>
+
+                <span class="section-label">
+                    COMPANIES ON JOBVERSE
+                </span>
+
+
+                <h2>
+                    Explore companies
+                </h2>
+
+            </div>
+
+
+            <span class="company-count">
+
+                <%= companies.length %>
+
+                <%= companies.length === 1
+                    ? "company"
+                    : "companies"
+                %>
+
+            </span>
+
+        </div>
+
+
+
+        <!-- ================= EMPTY STATE ================= -->
+
+        <% if (companies.length === 0) { %>
+
+
+            <div class="companies-empty">
+
+                <div class="companies-empty-icon">
+                    🏢
+                </div>
+
+
+                <h3>
+                    No companies found
+                </h3>
+
+
+                <p>
+                    We couldn't find companies for this search.
+                    Try exploring another job category.
+                </p>
+
+            </div>
+
+
+        <% } else { %>
+
+
+
+            <!-- ================= COMPANY GRID ================= -->
+
+            <div class="companies-grid">
+
+
+                <% displayedCompanies.forEach(company => { %>
+
+
+                    <article class="company-card">
+
+
+                        <!-- CARD TOP -->
+
+                        <div class="company-card-top">
+
+
+                            <!-- COMPANY INITIAL -->
+
+                            <div class="company-logo-placeholder">
+
+                                <%= company.name
+                                    ? company.name
+                                        .charAt(0)
+                                        .toUpperCase()
+                                    : "C"
+                                %>
+
+                            </div>
+
+
+
+                            <!-- JOB COUNT -->
+
+                            <span class="company-jobs">
+
+                                <%= company.jobCount %>
+
+                                <%= company.jobCount === 1
+                                    ? "Job"
+                                    : "Jobs"
+                                %>
+
+                            </span>
+
+
+                        </div>
+
+
+
+                        <!-- COMPANY NAME -->
+
+                        <h3>
+
+                            <%= company.name %>
+
+                        </h3>
+
+
+
+                        <!-- LOCATION -->
+
+                        <p class="company-location">
+
+                            📍
+
+                            <%= company.location || "India" %>
+
+                        </p>
+
+
+
+                        <!-- CATEGORY -->
+
+                        <p class="company-website">
+
+                            <%= company.category
+                                || "Various industries"
+                            %>
+
+                        </p>
+
+
+
+                        <!-- VIEW JOBS -->
+
+                        <a
+                            href="/jobs?keyword=<%= encodeURIComponent(company.name) %>&location=<%= encodeURIComponent(location) %>"
+                            class="company-view-btn"
+                        >
+
+                            View Jobs →
+
+                        </a>
+
+
+                    </article>
+
+
+                <% }) %>
+
+
+            </div>
+
+
+
+            <!-- ================= VIEW ALL ================= -->
+
+            <% if (!showAll && companies.length > 6) { %>
+
+
+                <div class="companies-view-all">
+
+
+                    <a href="/companies?view=all">
+
+                        View all
+                        <%= companies.length %>
+                        companies →
+
+                    </a>
+
+
+                </div>
+
+
+            <% } %>
+
+
+
+        <% } %>
+
+
+    </section>
+
+
+
+    <!-- ================= EMPLOYER CTA ================= -->
+
+    <section class="companies-cta">
+
+
+        <div>
+
+
+            <span class="section-label">
+                FOR EMPLOYERS
+            </span>
+
+
+            <h2>
+
+                Ready to find your
+
+                <span>
+                    next hire?
+                </span>
+
+            </h2>
+
+
+            <p>
+
+                Create your company profile and start connecting
+                with talented candidates.
+
+            </p>
+
+
+            <a href="/register?role=recruiter">
+
+                Start Hiring →
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+
+        <div class="footer-top">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+
+                <a href="/" class="footer-logo">
+
+                    <img
+                        src="/images/JobVerse-logo.png"
+                        alt="JobVerse"
+                    >
+
+                </a>
+
+
+                <p>
+                    Where ambition meets opportunity.
+                </p>
+
+
+            </div>
+
+
+
+            <!-- JOB SEEKERS -->
+
+            <div class="footer-column">
+
+                <h4>
+                    For Job Seekers
+                </h4>
+
+
+                <a href="/jobs">
+                    Find Jobs
+                </a>
+
+
+                <a href="/register">
+                    Create Profile
+                </a>
+
+
+                <a href="/login">
+                    Sign In
+                </a>
+
+            </div>
+
+
+
+            <!-- EMPLOYERS -->
+
+            <div class="footer-column">
+
+                <h4>
+                    For Employers
+                </h4>
+
+
+                <a href="/register?role=recruiter">
+                    Post a Job
+                </a>
+
+
+                <a href="/register?role=recruiter">
+                    Create Company
+                </a>
+
+            </div>
+
+
+
+            <!-- JOBVERSE -->
+
+            <div class="footer-column">
+
+                <h4>
+                    JobVerse
+                </h4>
+
+
+                <a href="/about">
+                    About
+                </a>
+
+
+                <a href="/contact">
+                    Contact
+                </a>
+
+
+                <a href="/privacy">
+                    Privacy
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- FOOTER BOTTOM -->
+
+        <div class="footer-bottom">
+
+
+            <p>
+                © 2026 JobVerse. All rights reserved.
+            </p>
+
+
+            <p>
+                Built for people building their careers.
+            </p>
+
+
+        </div>
+
+
+    </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title><%= job.title %> | JobVerse</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="/">
+                <img
+                    src="/images/jobverse-logo.png"
+                    alt="JobVerse"
+                >
+            </a>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a
+                href="/jobs"
+                class="active"
+            >
+                Find Jobs
+            </a>
+
+            <a href="/companies">
+                Companies
+            </a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/login"
+                class="login-btn"
+            >
+                Sign In
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =========================
+         JOB DETAILS
+    ========================== -->
+
+    <main class="job-details-page premium-job-details-page">
+
+
+        <!-- BACK -->
+
+        <a
+            href="/jobs"
+            class="back-to-jobs premium-back-link"
+        >
+            <span>←</span>
+            Back to jobs
+        </a>
+
+
+
+        <!-- =========================
+             MAIN GRID
+        ========================== -->
+
+        <div class="job-details-layout">
+
+
+            <!-- =====================
+                 LEFT CONTENT
+            ====================== -->
+
+            <section class="job-details-main">
+
+
+                <!-- HEADER CARD -->
+
+                <div class="job-details-header-card">
+
+
+                    <div class="job-details-company-icon">
+                        💼
+                    </div>
+
+
+                    <div class="job-details-heading">
+
+
+                        <span class="job-details-eyebrow">
+                            JOB OPPORTUNITY
+                        </span>
+
+
+                        <h1>
+                            <%= job.title %>
+                        </h1>
+
+
+                        <h2>
+                            <%= job.company %>
+                        </h2>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- META -->
+
+                <div class="job-details-meta premium-details-meta">
+
+
+                    <span>
+
+                        <span class="meta-symbol">
+                            📍
+                        </span>
+
+                        <%= job.location || "Location not specified" %>
+
+                    </span>
+
+
+                    <% if (job.salaryMin) { %>
+
+                        <span>
+
+                            <span class="meta-symbol">
+                                💰
+                            </span>
+
+                            <%= Number(
+                                job.salaryMin
+                            ).toLocaleString() %>
+
+                            <% if (job.salaryMax) { %>
+
+                                -
+
+                                <%= Number(
+                                    job.salaryMax
+                                ).toLocaleString() %>
+
+                            <% } %>
+
+                        </span>
+
+                    <% } %>
+
+
+                    <span>
+
+                        <span class="meta-symbol">
+                            <%= job.isInternal ? "✓" : "↗" %>
+                        </span>
+
+                        <%= job.isInternal
+                            ? "JobVerse listing"
+                            : "External listing" %>
+
+                    </span>
+
+
+                </div>
+
+
+
+                <!-- DESCRIPTION -->
+
+                <div class="job-description-section">
+
+
+                    <div class="details-section-heading">
+
+                        <span class="section-heading-line"></span>
+
+                        <h3>
+                            About this role
+                        </h3>
+
+                    </div>
+
+
+                    <p class="job-full-description">
+
+                        <%= job.description ||
+                            "View the original listing for the complete job description." %>
+
+                    </p>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =====================
+                 RIGHT SIDEBAR
+            ====================== -->
+
+            <aside class="job-details-sidebar">
+
+
+                <div class="apply-card">
+
+
+                    <div class="apply-card-top">
+
+                        <span class="apply-card-label">
+                            READY TO APPLY?
+                        </span>
+
+
+                        <h3>
+                            Take the next step.
+                        </h3>
+
+
+                        <p>
+                            Review the opportunity and
+                            submit your application.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- APPLY -->
+
+                    <% if (job.isInternal) { %>
+
+                        <a
+                            href="/jobs/<%= job.id %>/apply"
+                            class="premium-apply-button"
+                        >
+
+                            <span>
+                                Apply Now
+                            </span>
+
+                            <span>
+                                →
+                            </span>
+
+                        </a>
+
+
+                        <p class="apply-note">
+                            Your resume and cover letter
+                            will be submitted securely.
+                        </p>
+
+
+                    <% } else { %>
+
+                        <a
+                            href="<%= job.redirectUrl %>"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="premium-apply-button"
+                        >
+
+                            <span>
+                                Apply on Original Site
+                            </span>
+
+                            <span>
+                                ↗
+                            </span>
+
+                        </a>
+
+
+                        <p class="apply-note">
+                            You'll continue to the
+                            original job listing.
+                        </p>
+
+
+                    <% } %>
+
+
+                </div>
+
+
+
+                <!-- JOB OVERVIEW -->
+
+                <div class="job-overview-card">
+
+
+                    <span class="overview-label">
+                        JOB OVERVIEW
+                    </span>
+
+
+                    <div class="overview-item">
+
+                        <span class="overview-icon">
+                            📍
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Location
+                            </small>
+
+                            <strong>
+                                <%= job.location ||
+                                    "Not specified" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <% if (job.salaryMin) { %>
+
+                        <div class="overview-item">
+
+                            <span class="overview-icon">
+                                💰
+                            </span>
+
+                            <div>
+
+                                <small>
+                                    Salary
+                                </small>
+
+                                <strong>
+
+                                    <%= Number(
+                                        job.salaryMin
+                                    ).toLocaleString() %>
+
+                                    <% if (job.salaryMax) { %>
+
+                                        -
+                                        <%= Number(
+                                            job.salaryMax
+                                        ).toLocaleString() %>
+
+                                    <% } %>
+
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    <% } %>
+
+
+                    <div class="overview-item">
+
+                        <span class="overview-icon">
+                            ◉
+                        </span>
+
+                        <div>
+
+                            <small>
+                                Listing
+                            </small>
+
+                            <strong>
+                                <%= job.isInternal
+                                    ? "JobVerse"
+                                    : "External" %>
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+</body>
+
+</html>

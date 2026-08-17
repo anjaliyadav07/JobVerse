@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= job.title %> | JobVerse</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="/">
+                <img src="/images/jobverse-logo.png" alt="JobVerse">
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/jobs">Find Jobs</a>
+            <a href="/recruiter/dashboard">Dashboard</a>
+        </div>
+
+    </nav>
+
+
+    <main class="recruiter-job-details-page">
+
+        <a href="/recruiter/dashboard" class="back-to-jobs">
+            ← Back to Dashboard
+        </a>
+
+        <section class="recruiter-job-details-card">
+
+            <p class="dashboard-label">
+                YOUR JOB POSTING
+            </p>
+
+            <h1>
+                <%= job.title %>
+            </h1>
+
+            <h2>
+                <%= job.company_name %>
+            </h2>
+
+            <div class="job-details-meta">
+
+                <span>
+                    📍 <%= job.location || "Location not specified" %>
+                </span>
+
+                <span>
+                    💼 <%= job.job_type || "Not specified" %>
+                </span>
+
+                <% if (job.category) { %>
+                    <span>
+                        🏷️ <%= job.category %>
+                    </span>
+                <% } %>
+
+            </div>
+
+            <hr>
+
+            <h3>Job Description</h3>
+
+            <p class="job-full-description">
+                <%= job.description %>
+            </p>
+
+            <div class="recruiter-detail-actions">
+
+                <a
+                    href="/recruiter/jobs/<%= job.id %>/edit"
+                    class="dashboard-primary-btn"
+                >
+                    Edit Job
+                </a>
+
+                <a
+                    href="/recruiter/dashboard"
+                    class="job-action-btn secondary"
+                >
+                    Back to Jobs
+                </a>
+<form
+    action="/recruiter/jobs/<%= job.id %>/delete"
+    method="POST"
+    onsubmit="return confirm('Are you sure you want to delete this job?');"
+>
+    <button type="submit" class="delete-job-btn">
+        Delete Job
+    </button>
+</form>
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Job | JobVerse</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="/">
+                <img src="/images/jobverse-logo.png" alt="JobVerse">
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/jobs">Find Jobs</a>
+            <a href="/recruiter/dashboard">Dashboard</a>
+        </div>
+
+    </nav>
+
+
+    <main class="post-job-page">
+
+        <section class="post-job-card">
+
+            <p class="dashboard-label">RECRUITER</p>
+
+            <h1>Edit job</h1>
+
+            <p class="post-job-subtitle">
+                Update your job posting details.
+            </p>
+
+
+            <form
+                action="/recruiter/jobs/<%= job.id %>/edit"
+                method="POST"
+            >
+
+                <div class="form-group">
+
+                    <label for="title">Job title</label>
+
+                    <input
+                        type="text"
+                        id="title"
+                        name="title"
+                        value="<%= job.title %>"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="location">Location</label>
+
+                    <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value="<%= job.location || '' %>"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="job_type">Job type</label>
+
+                        <select
+                            id="job_type"
+                            name="job_type"
+                            required
+                        >
+
+                            <option value="Full-time"
+                                <%= job.job_type === "Full-time" ? "selected" : "" %>>
+                                Full-time
+                            </option>
+
+                            <option value="Part-time"
+                                <%= job.job_type === "Part-time" ? "selected" : "" %>>
+                                Part-time
+                            </option>
+
+                            <option value="Internship"
+                                <%= job.job_type === "Internship" ? "selected" : "" %>>
+                                Internship
+                            </option>
+
+                            <option value="Contract"
+                                <%= job.job_type === "Contract" ? "selected" : "" %>>
+                                Contract
+                            </option>
+
+                            <option value="Remote"
+                                <%= job.job_type === "Remote" ? "selected" : "" %>>
+                                Remote
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="category">Category</label>
+
+                        <input
+                            type="text"
+                            id="category"
+                            name="category"
+                            value="<%= job.category || '' %>"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="salary_min">Minimum salary</label>
+
+                        <input
+                            type="number"
+                            id="salary_min"
+                            name="salary_min"
+                            value="<%= job.salary_min || '' %>"
+                            min="0"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="salary_max">Maximum salary</label>
+
+                        <input
+                            type="number"
+                            id="salary_max"
+                            name="salary_max"
+                            value="<%= job.salary_max || '' %>"
+                            min="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="description">Job description</label>
+
+                    <textarea
+                        id="description"
+                        name="description"
+                        rows="8"
+                        required
+                    ><%= job.description %></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="post-job-btn"
+                >
+                    Save Changes
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

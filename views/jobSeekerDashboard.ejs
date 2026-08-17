@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | JobVerse</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            <a href="/">
+                <img
+                    src="/images/jobverse-logo.png"
+                    alt="JobVerse"
+                >
+            </a>
+
+        </div>
+
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/jobs">
+                Find Jobs
+            </a>
+
+            <a href="/companies">
+                Companies
+            </a>
+
+        </div>
+
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/logout"
+                class="login-btn"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+
+    </nav>
+
+
+
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <main class="dashboard-page">
+
+
+        <!-- HEADER -->
+
+        <section class="dashboard-header">
+
+
+            <div>
+
+                <p class="dashboard-label">
+                    JOB SEEKER DASHBOARD
+                </p>
+
+
+                <h1>
+                    Welcome back,
+                    <%= user.name %>
+                    👋
+                </h1>
+
+
+                <p>
+                    Discover opportunities and track your
+                    job applications from one place.
+                </p>
+
+            </div>
+
+
+
+            <a
+                href="/jobs"
+                class="dashboard-primary-btn"
+            >
+                Find Jobs
+            </a>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             STATISTICS
+        ========================== -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- APPLIED -->
+
+            <div class="dashboard-card">
+
+                <span class="dashboard-icon">
+                    💼
+                </span>
+
+
+                <h3>
+                    Applied Jobs
+                </h3>
+
+
+                <strong>
+                    <%= appliedJobs %>
+                </strong>
+
+
+                <p>
+                    Jobs you've applied to
+                </p>
+
+            </div>
+
+
+
+            <!-- SHORTLISTED -->
+
+            <div class="dashboard-card">
+
+                <span class="dashboard-icon">
+                    ⭐
+                </span>
+
+
+                <h3>
+                    Shortlisted
+                </h3>
+
+
+                <strong>
+                    <%= shortlisted %>
+                </strong>
+
+
+                <p>
+                    Applications shortlisted
+                </p>
+
+            </div>
+
+
+
+            <!-- HIRED -->
+
+            <div class="dashboard-card">
+
+                <span class="dashboard-icon">
+                    🎉
+                </span>
+
+
+                <h3>
+                    Hired
+                </h3>
+
+
+                <strong>
+                    <%= hired %>
+                </strong>
+
+
+                <p>
+                    Successful applications
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             APPLICATIONS
+        ========================== -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+
+                <div>
+
+                    <p class="dashboard-label">
+                        YOUR APPLICATIONS
+                    </p>
+
+
+                    <h2>
+                        Recent applications
+                    </h2>
+
+                </div>
+
+
+                <a
+                    href="/jobs"
+                    class="job-action-btn secondary"
+                >
+                    Browse Jobs
+                </a>
+
+
+            </div>
+
+
+
+            <!-- NO APPLICATIONS -->
+
+            <% if (applications.length === 0) { %>
+
+
+                <div class="empty-dashboard">
+
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+
+                    <h3>
+                        No applications yet
+                    </h3>
+
+
+                    <p>
+                        Start exploring jobs and apply to
+                        opportunities that match your skills.
+                    </p>
+
+
+                    <a
+                        href="/jobs"
+                        class="dashboard-primary-btn"
+                    >
+                        Explore Jobs
+                    </a>
+
+
+                </div>
+
+
+            <% } else { %>
+
+
+
+                <!-- APPLICATION LIST -->
+
+                <div class="seeker-applications-list">
+
+
+                    <% applications.forEach(application => { %>
+
+
+                        <article class="seeker-application-card">
+
+
+                            <!-- JOB INFORMATION -->
+
+                            <div class="seeker-application-info">
+
+
+                                <p class="recruiter-job-category">
+                                    APPLICATION
+                                </p>
+
+
+                                <h3>
+                                    <%= application.job_title %>
+                                </h3>
+
+
+                                <p class="recruiter-job-company">
+
+                                    <%= application.company_name %>
+
+                                </p>
+
+
+
+                                <div class="recruiter-job-meta">
+
+
+                                    <span>
+
+                                        📍
+                                        <%= application.location || "Location not specified" %>
+
+                                    </span>
+
+
+                                    <span>
+
+                                        💼
+                                        <%= application.job_type || "Not specified" %>
+
+                                    </span>
+
+
+                                </div>
+
+
+                                <p class="application-date">
+
+                                    Applied on
+
+                                    <%= new Date(
+                                        application.applied_at
+                                    ).toLocaleDateString() %>
+
+                                </p>
+
+
+                            </div>
+
+
+
+                            <!-- APPLICATION STATUS -->
+
+                            <div class="seeker-application-status">
+
+
+                                <span
+                                    class="status-badge <%= application.status %>"
+                                >
+
+                                    <%= application.status %>
+
+                                </span>
+
+
+
+                                <!-- VIEW JOB -->
+
+                                <a
+                                    href="/jobs/<%= application.job_id %>"
+                                    class="job-action-btn"
+                                >
+                                    View Job
+                                </a>
+
+
+                            </div>
+
+
+                        </article>
+
+
+                    <% }); %>
+
+
+                </div>
+
+
+            <% } %>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

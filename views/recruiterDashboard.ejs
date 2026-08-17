@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recruiter Dashboard | JobVerse</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="/">
+                <img
+                    src="/images/jobverse-logo.png"
+                    alt="JobVerse"
+                >
+            </a>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/jobs">Find Jobs</a>
+
+            <a href="/companies">Companies</a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/logout"
+                class="login-btn"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- DASHBOARD -->
+
+    <main class="dashboard-page">
+
+
+        <!-- HEADER -->
+
+        <section class="dashboard-header">
+
+            <div>
+
+                <p class="dashboard-label">
+                    RECRUITER DASHBOARD
+                </p>
+
+
+                <h1>
+                    Welcome back,
+                    <%= user.name %>
+                    👋
+                </h1>
+
+
+                <p>
+                    Manage your jobs, company, and candidates
+                    from one place.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-header-actions">
+
+                <a
+                    href="/recruiter/applicants"
+                    class="job-action-btn secondary"
+                >
+                    View Applicants
+                </a>
+
+
+                <a
+                    href="/recruiter/jobs/new"
+                    class="dashboard-primary-btn"
+                >
+                    Post a Job
+                </a>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DASHBOARD STATS -->
+
+        <section class="dashboard-grid">
+
+
+            <!-- ACTIVE JOBS -->
+
+            <div class="dashboard-card">
+
+                <span class="dashboard-icon">
+                    💼
+                </span>
+
+
+                <h3>
+                    Active Jobs
+                </h3>
+
+
+                <strong>
+                    <%= activeJobs %>
+                </strong>
+
+
+                <p>
+                    Currently active job listings
+                </p>
+
+            </div>
+
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="dashboard-card">
+
+                <span class="dashboard-icon">
+                    👥
+                </span>
+
+
+                <h3>
+                    Applications
+                </h3>
+
+
+                <strong>
+                    <%= applications %>
+                </strong>
+
+
+                <p>
+                    Applications received
+                </p>
+
+
+                <a
+                    href="/recruiter/applicants"
+                    class="dashboard-card-link"
+                >
+                    View applicants →
+                </a>
+
+            </div>
+
+
+
+            <!-- COMPANY -->
+
+            <div class="dashboard-card">
+
+                <span class="dashboard-icon">
+                    🏢
+                </span>
+
+
+                <h3>
+                    Company
+                </h3>
+
+
+                <strong>
+                    —
+                </strong>
+
+
+                <p>
+                    Manage your company profile
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- JOB LISTINGS -->
+
+        <section class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="dashboard-label">
+                        YOUR JOBS
+                    </p>
+
+
+                    <h2>
+                        Recent job postings
+                    </h2>
+
+                </div>
+
+
+                <% if (jobs.length > 0) { %>
+
+                    <a
+                        href="/recruiter/jobs/new"
+                        class="job-action-btn secondary"
+                    >
+                        + Post another job
+                    </a>
+
+                <% } %>
+
+            </div>
+
+
+
+            <!-- NO JOBS -->
+
+            <% if (jobs.length === 0) { %>
+
+
+                <div class="empty-dashboard">
+
+
+                    <div class="empty-icon">
+                        💼
+                    </div>
+
+
+                    <h3>
+                        No jobs posted yet
+                    </h3>
+
+
+                    <p>
+                        Create your first job listing and
+                        start finding great candidates.
+                    </p>
+
+
+                    <a
+                        href="/recruiter/jobs/new"
+                        class="dashboard-primary-btn"
+                    >
+                        Post Your First Job
+                    </a>
+
+
+                </div>
+
+
+            <% } else { %>
+
+
+
+                <!-- JOB LIST -->
+
+                <div class="recruiter-jobs-list">
+
+
+                    <% jobs.forEach(job => { %>
+
+
+                        <article class="recruiter-job-card">
+
+
+                            <div>
+
+
+                                <p class="recruiter-job-category">
+
+                                    <%= job.category || "Job Opportunity" %>
+
+                                </p>
+
+
+
+                                <h3>
+
+                                    <%= job.title %>
+
+                                </h3>
+
+
+
+                                <p class="recruiter-job-company">
+
+                                    <%= job.company_name %>
+
+                                </p>
+
+
+
+                                <div class="recruiter-job-meta">
+
+
+                                    <span>
+
+                                        📍
+                                        <%= job.location || "Location not specified" %>
+
+                                    </span>
+
+
+                                    <span>
+
+                                        💼
+                                        <%= job.job_type || "Not specified" %>
+
+                                    </span>
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <!-- JOB ACTIONS -->
+
+                            <div class="recruiter-job-actions">
+
+
+                                <a
+                                    href="/recruiter/jobs/<%= job.id %>"
+                                    class="job-action-btn"
+                                >
+                                    View
+                                </a>
+
+
+                                <a
+                                    href="/recruiter/jobs/<%= job.id %>/edit"
+                                    class="job-action-btn secondary"
+                                >
+                                    Edit
+                                </a>
+
+
+                            </div>
+
+
+                        </article>
+
+
+                    <% }); %>
+
+
+                </div>
+
+
+            <% } %>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>

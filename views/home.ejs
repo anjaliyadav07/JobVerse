@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JobVerse | Find Your Next Opportunity</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="/" class="logo">
+    <img src="/images/JobVerse-logo.png" alt="JobVerse">
+</a>
+
+        <div class="nav-links">
+            <a href="/" class="active">Home</a>
+            <a href="/jobs">Find Jobs</a>
+            <a href="/companies">Companies</a>
+            <a href="/about">About</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/login" class="login-btn">Log In</a>
+            <a href="/register" class="signup-btn">Sign Up</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-badge">
+                <span></span>
+                FIND YOUR NEXT OPPORTUNITY
+            </div>
+
+            <h1>
+                Find work that
+                <span>moves you forward.</span>
+            </h1>
+
+            <p>
+                Discover opportunities that match your skills,
+                goals, and ambitions.
+            </p>
+
+            <!-- SEARCH -->
+            <form class="search-box" action="/jobs" method="GET">
+
+                <div class="search-field">
+                    <span class="search-icon">⌕</span>
+
+                    <div>
+                        <label for="keyword">What are you looking for?</label>
+                        <input
+                            type="text"
+                            id="keyword"
+                            name="keyword"
+                            placeholder="Job title, skill or keyword"
+                        >
+                    </div>
+                </div>
+
+                <div class="search-divider"></div>
+
+                <div class="search-field">
+                    <span class="location-icon">⌖</span>
+
+                    <div>
+                        <label for="location">Where?</label>
+                        <input
+                            type="text"
+                            id="location"
+                            name="location"
+                            placeholder="City or location"
+                        >
+                    </div>
+                </div>
+
+                <button type="submit" class="search-btn">
+                    Search Jobs
+                </button>
+
+            </form>
+
+            <!-- POPULAR SEARCHES -->
+            <div class="popular-searches">
+
+                <span>Popular:</span>
+
+                <a href="/jobs?keyword=Frontend%20Developer">
+                    Frontend Developer
+                </a>
+
+                <a href="/jobs?keyword=Python%20Developer">
+                    Python Developer
+                </a>
+
+                <a href="/jobs?keyword=Data%20Analyst">
+                    Data Analyst
+                </a>
+
+                <a href="/jobs?keyword=UI%20UX%20Designer">
+                    UI/UX Designer
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORIES -->
+   <section class="categories-section">
+
+    <div class="section-heading">
+        <div>
+            <span class="section-label">EXPLORE OPPORTUNITIES</span>
+            <h2>Find work in your field.</h2>
+        </div>
+
+        <a href="/jobs" class="view-all">
+            Explore all jobs →
+        </a>
+    </div>
+
+    <div class="category-grid">
+
+        <a href="/jobs?category=Technology" class="category-card">
+            <div class="category-icon">⌘</div>
+            <div>
+                <h3>Technology</h3>
+                <p>Software, IT & development</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Data" class="category-card">
+            <div class="category-icon">◫</div>
+            <div>
+                <h3>Data & Analytics</h3>
+                <p>Data, AI & analytics</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Design" class="category-card">
+            <div class="category-icon">✦</div>
+            <div>
+                <h3>Design</h3>
+                <p>UI, UX & creative roles</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Marketing" class="category-card">
+            <div class="category-icon">◈</div>
+            <div>
+                <h3>Marketing</h3>
+                <p>Marketing & growth</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Finance" class="category-card">
+            <div class="category-icon">₹</div>
+            <div>
+                <h3>Finance</h3>
+                <p>Finance & accounting</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Sales" class="category-card">
+            <div class="category-icon">↗</div>
+            <div>
+                <h3>Sales</h3>
+                <p>Sales & business development</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Human Resources" class="category-card">
+            <div class="category-icon">◎</div>
+            <div>
+                <h3>Human Resources</h3>
+                <p>People & talent</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+        <a href="/jobs?category=Customer Support" class="category-card">
+            <div class="category-icon">◌</div>
+            <div>
+                <h3>Customer Support</h3>
+                <p>Support & customer success</p>
+            </div>
+            <span class="category-arrow">→</span>
+        </a>
+
+    </div>
+
+</section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-section">
+
+    <div class="section-center">
+
+        <span class="section-label">HOW JOBVERSE WORKS</span>
+
+        <h2>
+            Your next opportunity,
+            <span>made simpler.</span>
+        </h2>
+
+        <p>
+            From discovering the right role to tracking your application,
+            JobVerse keeps your job search organized in one place.
+        </p>
+
+    </div>
+
+
+    <div class="steps">
+
+        <div class="step">
+
+            <div class="step-top">
+                <span class="step-number">01</span>
+                <div class="step-line"></div>
+            </div>
+
+            <div class="step-icon">◎</div>
+
+            <h3>Create your profile</h3>
+
+            <p>
+                Build your professional profile, add your skills,
+                experience, and resume.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-top">
+                <span class="step-number">02</span>
+                <div class="step-line"></div>
+            </div>
+
+            <div class="step-icon">⌕</div>
+
+            <h3>Discover opportunities</h3>
+
+            <p>
+                Search and filter real job listings based on
+                your skills, interests, and location.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <div class="step-top">
+                <span class="step-number">03</span>
+                <div class="step-line"></div>
+            </div>
+
+            <div class="step-icon">↗</div>
+
+            <h3>Apply & track</h3>
+
+            <p>
+                Apply to positions and track your application
+                status from your personal dashboard.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- EMPLOYER CTA -->
+    <section class="employer-section">
+
+    <div class="employer-content">
+
+        <span class="section-label">FOR EMPLOYERS</span>
+
+        <h2>
+            Build your team with
+            <span>JobVerse.</span>
+        </h2>
+
+        <p>
+            Create your company profile, publish job opportunities,
+            and connect with candidates looking for their next move.
+        </p>
+
+        <div class="employer-actions">
+            <a href="/register?role=recruiter" class="employer-btn">
+                Start Hiring →
+            </a>
+
+            <a href="/about" class="employer-link">
+                Learn more about JobVerse
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- FOOTER -->
+ <footer class="footer">
+
+    <div class="footer-top">
+
+        <div class="footer-brand">
+
+            <a href="/" class="footer-logo">
+                <img src="/images/jobverse-logo.png" alt="JobVerse">
+            </a>
+
+            <p>
+                Where ambition meets opportunity.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>For Job Seekers</h4>
+
+            <a href="/jobs">Find Jobs</a>
+            <a href="/register">Create Profile</a>
+            <a href="/login">Sign In</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>For Employers</h4>
+
+            <a href="/register?role=recruiter">Post a Job</a>
+            <a href="/register?role=recruiter">Create Company</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>JobVerse</h4>
+
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/privacy">Privacy</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>© 2026 JobVerse. All rights reserved.</p>
+
+        <p>Built for people building their careers.</p>
+
+    </div>
+
+</footer>
+
+</body>
+</html>

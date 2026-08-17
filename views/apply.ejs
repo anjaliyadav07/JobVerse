@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Apply | JobVerse</title>
+
+    <link
+        rel="stylesheet"
+        href="/css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="/">
+                <img
+                    src="/images/jobverse-logo.png"
+                    alt="JobVerse"
+                >
+            </a>
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="/">Home</a>
+
+            <a href="/jobs">Find Jobs</a>
+
+            <a href="/dashboard">Dashboard</a>
+
+        </div>
+
+
+        <div class="nav-actions">
+
+            <a
+                href="/logout"
+                class="login-btn"
+            >
+                Log Out
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <main class="apply-page">
+
+
+        <section class="apply-card">
+
+
+            <p class="dashboard-label">
+                JOB APPLICATION
+            </p>
+
+
+            <h1>
+                Apply for <%= job.title %>
+            </h1>
+
+
+            <p class="apply-company">
+                <%= job.company_name %>
+                ·
+                <%= job.location %>
+            </p>
+
+
+            <form
+                action="/jobs/<%= job.id %>/apply"
+                method="POST"
+                enctype="multipart/form-data"
+            >
+
+
+                <!-- RESUME -->
+
+                <div class="form-group">
+
+                    <label for="resume">
+                        Resume *
+                    </label>
+
+                    <input
+                        type="file"
+                        id="resume"
+                        name="resume"
+                        accept=".pdf"
+                        required
+                    >
+
+                    <small>
+                        Upload your latest resume in PDF format.
+                    </small>
+
+                </div>
+
+
+
+                <!-- COVER LETTER -->
+
+                <div class="form-group">
+
+                    <label for="cover_letter">
+                        Cover Letter
+                    </label>
+
+                    <textarea
+                        id="cover_letter"
+                        name="cover_letter"
+                        rows="8"
+                        placeholder="Tell the recruiter why you're a good fit for this role..."
+                    ></textarea>
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="dashboard-primary-btn apply-submit-btn"
+                >
+                    Submit Application →
+                </button>
+
+
+            </form>
+
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
