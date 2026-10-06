@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,106 +12,960 @@
 
 <body>
 
-    <!-- NAVBAR -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
     <nav class="navbar">
 
         <a href="/" class="logo">
-    <img src="/images/JobVerse-logo.png" alt="JobVerse">
-</a>
+            <img
+                src="/images/JobVerse-logo.png"
+                alt="JobVerse"
+            >
+        </a>
 
         <div class="nav-links">
-            <a href="/" class="active">Home</a>
-            <a href="/jobs">Find Jobs</a>
-            <a href="/companies">Companies</a>
-            <a href="/about">About</a>
+
+            <a href="/" class="active">
+                Home
+            </a>
+
+            <a href="/jobs">
+                Find Jobs
+            </a>
+
+            <a href="/companies">
+                Companies
+            </a>
+
+            <a href="/about">
+                About
+            </a>
+
         </div>
 
         <div class="nav-actions">
-            <a href="/login" class="login-btn">Log In</a>
-            <a href="/register" class="signup-btn">Sign Up</a>
+
+            <% if (session && session.userId) { %>
+
+                <% if (session.userRole === "recruiter") { %>
+
+                    <a
+                        href="/recruiter/dashboard"
+                        class="login-btn"
+                    >
+                        Dashboard
+                    </a>
+
+                <% } else { %>
+
+                    <a
+                        href="/dashboard"
+                        class="login-btn"
+                    >
+                        Dashboard
+                    </a>
+
+                <% } %>
+
+                <a
+                    href="/logout"
+                    class="signup-btn"
+                >
+                    Log Out
+                </a>
+
+            <% } else { %>
+
+                <a
+                    href="/login"
+                    class="login-btn"
+                >
+                    Log In
+                </a>
+
+                <a
+                    href="/register"
+                    class="signup-btn"
+                >
+                    Sign Up
+                </a>
+
+            <% } %>
+
         </div>
 
     </nav>
 
 
-    <!-- HERO -->
-    <section class="hero">
+    <!-- =========================
+         HERO
+    ========================== -->
 
-        <div class="hero-content">
+    <section class="hero compact-hero">
 
-            <div class="hero-badge">
-                <span></span>
-                FIND YOUR NEXT OPPORTUNITY
+        <div class="hero-content hero-redesign">
+
+            <!-- =========================
+                 LEFT
+            ========================== -->
+
+            <div class="hero-copy">
+
+                <div class="hero-badge">
+
+                    <span></span>
+
+                    YOUR NEXT CAREER MOVE STARTS HERE
+
+                </div>
+
+
+                <h1>
+
+                    Find work that
+
+                    <span>
+                        moves you forward.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Discover opportunities that match your skills,
+                    goals, and ambitions — all in one place.
+
+                </p>
+
+
+                <!-- =========================
+                     SEARCH
+                ========================== -->
+
+                <form
+                    class="search-box"
+                    action="/jobs"
+                    method="GET"
+                >
+
+                    <div class="search-field">
+
+                        <span class="search-icon">
+                            ⌕
+                        </span>
+
+                        <div>
+
+                            <label for="keyword">
+                                What are you looking for?
+                            </label>
+
+                            <input
+                                type="text"
+                                id="keyword"
+                                name="keyword"
+                                placeholder="Job title, skill or keyword"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="search-divider"></div>
+
+
+                    <div class="search-field">
+
+                        <span class="location-icon">
+                            ⌖
+                        </span>
+
+                        <div>
+
+                            <label for="location">
+                                Where?
+                            </label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                name="location"
+                                placeholder="City or location"
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="search-btn"
+                    >
+
+                        Search
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- =========================
+                     POPULAR
+                ========================== -->
+
+                <div class="popular-searches">
+
+                    <span>
+                        Popular:
+                    </span>
+
+                    <a href="/jobs?keyword=Frontend%20Developer">
+                        Frontend
+                    </a>
+
+                    <a href="/jobs?keyword=Python%20Developer">
+                        Python
+                    </a>
+
+                    <a href="/jobs?keyword=Data%20Analyst">
+                        Data
+                    </a>
+
+                    <a href="/jobs?keyword=UI%20UX%20Designer">
+                        UI/UX
+                    </a>
+
+                </div>
+
             </div>
 
-            <h1>
-                Find work that
-                <span>moves you forward.</span>
-            </h1>
+
+            <!-- =========================
+                 RIGHT
+            ========================== -->
+
+            <div class="hero-visual">
+
+                <div class="hero-orbit orbit-one"></div>
+
+                <div class="hero-orbit orbit-two"></div>
+
+
+                <!-- FLOATING CARD -->
+
+                <div class="floating-role role-one">
+
+                    <div class="role-icon">
+                        FE
+                    </div>
+
+                    <div class="role-info">
+
+                        <strong>
+                            Frontend Developer
+                        </strong>
+
+                        <span>
+                            React · JavaScript
+                        </span>
+
+                    </div>
+
+                    <span class="role-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+
+                <!-- MAIN CARD -->
+
+                <div class="hero-panel">
+
+                    <div class="panel-top">
+
+                        <div>
+
+                            <span class="panel-eyebrow">
+                                JOBVERSE
+                            </span>
+
+                            <h3>
+                                Find your next role.
+                            </h3>
+
+                        </div>
+
+                        <span class="panel-dot"></span>
+
+                    </div>
+
+
+                    <div class="panel-search">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <span>
+                            Search opportunities
+                        </span>
+
+                    </div>
+
+
+                    <!-- JOB 1 -->
+
+                    <div class="panel-role">
+
+                        <div class="mini-logo">
+                            J
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Frontend Developer
+                            </strong>
+
+                            <span>
+                                Remote · React
+                            </span>
+
+                        </div>
+
+                        <span class="mini-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <!-- JOB 2 -->
+
+                    <div class="panel-role">
+
+                        <div class="mini-logo mini-logo-alt">
+                            P
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Python Developer
+                            </strong>
+
+                            <span>
+                                Hybrid · Python
+                            </span>
+
+                        </div>
+
+                        <span class="mini-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+
+                    <!-- JOB 3 -->
+
+                    <div class="panel-role">
+
+                        <div class="mini-logo mini-logo-pink">
+                            U
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                UI/UX Designer
+                            </strong>
+
+                            <span>
+                                Remote · Figma
+                            </span>
+
+                        </div>
+
+                        <span class="mini-arrow">
+                            →
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SECOND FLOATING CARD -->
+
+                <div class="floating-role role-two">
+
+                    <div class="role-icon role-icon-purple">
+                        DA
+                    </div>
+
+                    <div class="role-info">
+
+                        <strong>
+                            Data Analyst
+                        </strong>
+
+                        <span>
+                            Python · SQL
+                        </span>
+
+                    </div>
+
+                    <span class="role-arrow">
+                        ↗
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             SMALL FEATURE STRIP
+        ========================== -->
+
+        <div class="hero-bottom">
+
+            <div class="hero-value">
+
+                <span class="value-icon">
+                    ⌕
+                </span>
+
+                <div>
+
+                    <strong>
+                        Discover
+                    </strong>
+
+                    <span>
+                        Find relevant roles.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-value">
+
+                <span class="value-icon">
+                    ◎
+                </span>
+
+                <div>
+
+                    <strong>
+                        Explore
+                    </strong>
+
+                    <span>
+                        Browse opportunities.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="hero-value">
+
+                <span class="value-icon">
+                    ✓
+                </span>
+
+                <div>
+
+                    <strong>
+                        Apply
+                    </strong>
+
+                    <span>
+                        Take your next step.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORIES
+    ========================== -->
+
+    <section class="categories-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <span class="section-label">
+                    EXPLORE
+                </span>
+
+                <h2>
+                    Find work in your field.
+                </h2>
+
+            </div>
+
+            <a
+                href="/jobs"
+                class="view-all"
+            >
+                View all jobs →
+            </a>
+
+        </div>
+
+
+        <div class="category-grid">
+
+
+            <!-- TECHNOLOGY -->
+
+            <a
+                href="/jobs?category=Technology"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ⌘
+                </div>
+
+                <div>
+
+                    <h3>
+                        Technology
+                    </h3>
+
+                    <p>
+                        Software & development
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- DATA -->
+
+            <a
+                href="/jobs?category=Data"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ◫
+                </div>
+
+                <div>
+
+                    <h3>
+                        Data & Analytics
+                    </h3>
+
+                    <p>
+                        Data, AI & analytics
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- DESIGN -->
+
+            <a
+                href="/jobs?category=Design"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <h3>
+                        Design
+                    </h3>
+
+                    <p>
+                        UI, UX & creative
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- MARKETING -->
+
+            <a
+                href="/jobs?category=Marketing"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ◈
+                </div>
+
+                <div>
+
+                    <h3>
+                        Marketing
+                    </h3>
+
+                    <p>
+                        Marketing & growth
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- FINANCE -->
+
+            <a
+                href="/jobs?category=Finance"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ₹
+                </div>
+
+                <div>
+
+                    <h3>
+                        Finance
+                    </h3>
+
+                    <p>
+                        Finance & accounting
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- SALES -->
+
+            <a
+                href="/jobs?category=Sales"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ↗
+                </div>
+
+                <div>
+
+                    <h3>
+                        Sales
+                    </h3>
+
+                    <p>
+                        Sales & business
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- HUMAN RESOURCES -->
+
+            <a
+                href="/jobs?category=Human%20Resources"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ◎
+                </div>
+
+                <div>
+
+                    <h3>
+                        Human Resources
+                    </h3>
+
+                    <p>
+                        People & talent
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+
+            <!-- CUSTOMER SUPPORT -->
+
+            <a
+                href="/jobs?category=Customer%20Support"
+                class="category-card"
+            >
+
+                <div class="category-icon">
+                    ◌
+                </div>
+
+                <div>
+
+                    <h3>
+                        Customer Support
+                    </h3>
+
+                    <p>
+                        Support & success
+                    </p>
+
+                </div>
+
+                <span class="category-arrow">
+                    →
+                </span>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <section class="how-section">
+
+        <div class="section-center">
+
+            <span class="section-label">
+                HOW IT WORKS
+            </span>
+
+            <h2>
+
+                Your next opportunity,
+
+                <span>
+                    made simpler.
+                </span>
+
+            </h2>
 
             <p>
-                Discover opportunities that match your skills,
-                goals, and ambitions.
+
+                Find, explore and apply to opportunities
+                without the unnecessary complexity.
+
             </p>
 
-            <!-- SEARCH -->
-            <form class="search-box" action="/jobs" method="GET">
+        </div>
 
-                <div class="search-field">
-                    <span class="search-icon">⌕</span>
 
-                    <div>
-                        <label for="keyword">What are you looking for?</label>
-                        <input
-                            type="text"
-                            id="keyword"
-                            name="keyword"
-                            placeholder="Job title, skill or keyword"
-                        >
-                    </div>
+        <div class="steps">
+
+
+            <!-- STEP 1 -->
+
+            <div class="step">
+
+                <div class="step-top">
+
+                    <span class="step-number">
+                        01
+                    </span>
+
+                    <div class="step-line"></div>
+
                 </div>
 
-                <div class="search-divider"></div>
-
-                <div class="search-field">
-                    <span class="location-icon">⌖</span>
-
-                    <div>
-                        <label for="location">Where?</label>
-                        <input
-                            type="text"
-                            id="location"
-                            name="location"
-                            placeholder="City or location"
-                        >
-                    </div>
+                <div class="step-icon">
+                    ◎
                 </div>
 
-                <button type="submit" class="search-btn">
-                    Search Jobs
-                </button>
+                <h3>
+                    Create your profile
+                </h3>
 
-            </form>
+                <p>
 
-            <!-- POPULAR SEARCHES -->
-            <div class="popular-searches">
+                    Add your skills, experience and resume
+                    to build your professional profile.
 
-                <span>Popular:</span>
+                </p>
 
-                <a href="/jobs?keyword=Frontend%20Developer">
-                    Frontend Developer
+            </div>
+
+
+            <!-- STEP 2 -->
+
+            <div class="step">
+
+                <div class="step-top">
+
+                    <span class="step-number">
+                        02
+                    </span>
+
+                    <div class="step-line"></div>
+
+                </div>
+
+                <div class="step-icon">
+                    ⌕
+                </div>
+
+                <h3>
+                    Discover opportunities
+                </h3>
+
+                <p>
+
+                    Search and filter jobs based on your
+                    skills, interests and location.
+
+                </p>
+
+            </div>
+
+
+            <!-- STEP 3 -->
+
+            <div class="step">
+
+                <div class="step-top">
+
+                    <span class="step-number">
+                        03
+                    </span>
+
+                    <div class="step-line"></div>
+
+                </div>
+
+                <div class="step-icon">
+                    ↗
+                </div>
+
+                <h3>
+                    Apply & move forward
+                </h3>
+
+                <p>
+
+                    Find the right opportunity and take
+                    the next step in your career.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         EMPLOYER CTA
+    ========================== -->
+
+    <section class="employer-section">
+
+        <div class="employer-content">
+
+            <span class="section-label">
+                FOR EMPLOYERS
+            </span>
+
+            <h2>
+
+                Build your team with
+
+                <span>
+                    JobVerse.
+                </span>
+
+            </h2>
+
+            <p>
+
+                Connect with talented people looking
+                for their next opportunity.
+
+            </p>
+
+
+            <div class="employer-actions">
+
+                <a
+                    href="/register?role=recruiter"
+                    class="employer-btn"
+                >
+                    Start Hiring →
                 </a>
 
-                <a href="/jobs?keyword=Python%20Developer">
-                    Python Developer
-                </a>
-
-                <a href="/jobs?keyword=Data%20Analyst">
-                    Data Analyst
-                </a>
-
-                <a href="/jobs?keyword=UI%20UX%20Designer">
-                    UI/UX Designer
+                <a
+                    href="/about"
+                    class="employer-link"
+                >
+                    Learn more
                 </a>
 
             </div>
@@ -120,272 +975,119 @@
     </section>
 
 
-    <!-- CATEGORIES -->
-   <section class="categories-section">
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
-    <div class="section-heading">
-        <div>
-            <span class="section-label">EXPLORE OPPORTUNITIES</span>
-            <h2>Find work in your field.</h2>
+    <footer class="footer">
+
+        <div class="footer-top">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <a
+                    href="/"
+                    class="footer-logo"
+                >
+
+                    <img
+                        src="/images/jobverse-logo.png"
+                        alt="JobVerse"
+                    >
+
+                </a>
+
+                <p>
+                    Where ambition meets opportunity.
+                </p>
+
+            </div>
+
+
+            <!-- JOB SEEKERS -->
+
+            <div class="footer-column">
+
+                <h4>
+                    For Job Seekers
+                </h4>
+
+                <a href="/jobs">
+                    Find Jobs
+                </a>
+
+                <a href="/register">
+                    Create Profile
+                </a>
+
+                <a href="/login">
+                    Sign In
+                </a>
+
+            </div>
+
+
+            <!-- EMPLOYERS -->
+
+            <div class="footer-column">
+
+                <h4>
+                    For Employers
+                </h4>
+
+                <a href="/register?role=recruiter">
+                    Post a Job
+                </a>
+
+                <a href="/register?role=recruiter">
+                    Create Company
+                </a>
+
+            </div>
+
+
+            <!-- JOBVERSE -->
+
+            <div class="footer-column">
+
+                <h4>
+                    JobVerse
+                </h4>
+
+                <a href="/about">
+                    About
+                </a>
+
+                <a href="/contact">
+                    Contact
+                </a>
+
+                <a href="/privacy">
+                    Privacy
+                </a>
+
+            </div>
+
         </div>
 
-        <a href="/jobs" class="view-all">
-            Explore all jobs →
-        </a>
-    </div>
 
-    <div class="category-grid">
-
-        <a href="/jobs?category=Technology" class="category-card">
-            <div class="category-icon">⌘</div>
-            <div>
-                <h3>Technology</h3>
-                <p>Software, IT & development</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Data" class="category-card">
-            <div class="category-icon">◫</div>
-            <div>
-                <h3>Data & Analytics</h3>
-                <p>Data, AI & analytics</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Design" class="category-card">
-            <div class="category-icon">✦</div>
-            <div>
-                <h3>Design</h3>
-                <p>UI, UX & creative roles</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Marketing" class="category-card">
-            <div class="category-icon">◈</div>
-            <div>
-                <h3>Marketing</h3>
-                <p>Marketing & growth</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Finance" class="category-card">
-            <div class="category-icon">₹</div>
-            <div>
-                <h3>Finance</h3>
-                <p>Finance & accounting</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Sales" class="category-card">
-            <div class="category-icon">↗</div>
-            <div>
-                <h3>Sales</h3>
-                <p>Sales & business development</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Human Resources" class="category-card">
-            <div class="category-icon">◎</div>
-            <div>
-                <h3>Human Resources</h3>
-                <p>People & talent</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-        <a href="/jobs?category=Customer Support" class="category-card">
-            <div class="category-icon">◌</div>
-            <div>
-                <h3>Customer Support</h3>
-                <p>Support & customer success</p>
-            </div>
-            <span class="category-arrow">→</span>
-        </a>
-
-    </div>
-
-</section>
-
-    <!-- HOW IT WORKS -->
-    <section class="how-section">
-
-    <div class="section-center">
-
-        <span class="section-label">HOW JOBVERSE WORKS</span>
-
-        <h2>
-            Your next opportunity,
-            <span>made simpler.</span>
-        </h2>
-
-        <p>
-            From discovering the right role to tracking your application,
-            JobVerse keeps your job search organized in one place.
-        </p>
-
-    </div>
-
-
-    <div class="steps">
-
-        <div class="step">
-
-            <div class="step-top">
-                <span class="step-number">01</span>
-                <div class="step-line"></div>
-            </div>
-
-            <div class="step-icon">◎</div>
-
-            <h3>Create your profile</h3>
+        <div class="footer-bottom">
 
             <p>
-                Build your professional profile, add your skills,
-                experience, and resume.
+                © 2026 JobVerse. All rights reserved.
+            </p>
+
+            <p>
+                Built for people building their careers.
             </p>
 
         </div>
 
-
-        <div class="step">
-
-            <div class="step-top">
-                <span class="step-number">02</span>
-                <div class="step-line"></div>
-            </div>
-
-            <div class="step-icon">⌕</div>
-
-            <h3>Discover opportunities</h3>
-
-            <p>
-                Search and filter real job listings based on
-                your skills, interests, and location.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-top">
-                <span class="step-number">03</span>
-                <div class="step-line"></div>
-            </div>
-
-            <div class="step-icon">↗</div>
-
-            <h3>Apply & track</h3>
-
-            <p>
-                Apply to positions and track your application
-                status from your personal dashboard.
-            </p>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- EMPLOYER CTA -->
-    <section class="employer-section">
-
-    <div class="employer-content">
-
-        <span class="section-label">FOR EMPLOYERS</span>
-
-        <h2>
-            Build your team with
-            <span>JobVerse.</span>
-        </h2>
-
-        <p>
-            Create your company profile, publish job opportunities,
-            and connect with candidates looking for their next move.
-        </p>
-
-        <div class="employer-actions">
-            <a href="/register?role=recruiter" class="employer-btn">
-                Start Hiring →
-            </a>
-
-            <a href="/about" class="employer-link">
-                Learn more about JobVerse
-            </a>
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- FOOTER -->
- <footer class="footer">
-
-    <div class="footer-top">
-
-        <div class="footer-brand">
-
-            <a href="/" class="footer-logo">
-                <img src="/images/jobverse-logo.png" alt="JobVerse">
-            </a>
-
-            <p>
-                Where ambition meets opportunity.
-            </p>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h4>For Job Seekers</h4>
-
-            <a href="/jobs">Find Jobs</a>
-            <a href="/register">Create Profile</a>
-            <a href="/login">Sign In</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h4>For Employers</h4>
-
-            <a href="/register?role=recruiter">Post a Job</a>
-            <a href="/register?role=recruiter">Create Company</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h4>JobVerse</h4>
-
-            <a href="/about">About</a>
-            <a href="/contact">Contact</a>
-            <a href="/privacy">Privacy</a>
-
-        </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <p>© 2026 JobVerse. All rights reserved.</p>
-
-        <p>Built for people building their careers.</p>
-
-    </div>
-
-</footer>
+    </footer>
 
 </body>
+
 </html>

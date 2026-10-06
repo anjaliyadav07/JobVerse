@@ -82,5 +82,95 @@ router.get(
         }
     }
 );
+// =========================
+// JOB SEEKER DASHBOARD
+// =========================
 
+router.get(
+    "/dashboard",
+    requireRole("job_seeker"),
+    async (req, res) => {
+        try {
+            const userId = req.session.userId;
+
+            const userResult = await pool.query(
+                `SELECT id, name, email, role
+                 FROM users
+                 WHERE id = $1`,
+                [userId]
+            );
+
+            if (userResult.rows.length === 0) {
+                return res.redirect("/login");
+            }
+
+            const user = userResult.rows[0];
+
+            const applicationsResult = await pool.query(
+                `SELECT
+                    applications.id,
+                    applications.status,
+                    applications.applied_at,
+                    jobs.title AS job_title,
+                    jobs.location,
+                    companies.name AS company_name
+                 FROM applications
+                 JOIN jobs
+                    ON applications.job_id = jobs.id
+                 JOIN companies
+                    ON jobs.company_id = companies.id
+                 WHERE applications.user_id = $1
+                 ORDER BY applications.applied_at DESC`,
+                [userId]
+            );
+
+            const applicationsCountResult = await pool.query(
+                `SELECT COUNT(*) AS count
+                 FROM applications
+                 WHERE user_id = $1`,
+                [userId]
+            );
+
+            const shortlistedResult = await pool.query(
+                `SELECT COUNT(*) AS count
+                 FROM applications
+                 WHERE user_id = $1
+                 AND status = 'shortlisted'`,
+                [userId]
+            );
+
+            const hiredResult = await pool.query(
+                `SELECT COUNT(*) AS count
+                 FROM applications
+                 WHERE user_id = $1
+                 AND status = 'hired'`,
+                [userId]
+            );
+
+            res.render("jobSeekerDashboard", {
+    user,
+    applications: applicationsResult.rows,
+
+    appliedJobs:
+        Number(applicationsCountResult.rows[0].count),
+
+    shortlisted:
+        Number(shortlistedResult.rows[0].count),
+
+    hired:
+        Number(hiredResult.rows[0].count)
+});
+
+        } catch (error) {
+            console.error(
+                "Job seeker dashboard error:",
+                error
+            );
+
+            res.status(500).send(
+                "Something went wrong."
+            );
+        }
+    }
+);
 module.exports = router;
