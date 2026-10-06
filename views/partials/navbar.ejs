@@ -1,0 +1,202 @@
+<nav class="navbar">
+
+    <a href="/" class="logo">
+        <img src="/images/JobVerse-logo.png" alt="JobVerse">
+    </a>
+
+    <!-- DESKTOP NAV -->
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/jobs">Find Jobs</a>
+        <a href="/companies">Companies</a>
+        <a href="/about">About</a>
+    </div>
+
+    <!-- DESKTOP ACTIONS -->
+    <div class="nav-actions">
+
+        <% if (session && session.userId) { %>
+
+            <% if (session.userRole === "recruiter") { %>
+
+                <a href="/recruiter/dashboard" class="login-btn">
+                    Dashboard
+                </a>
+
+            <% } else { %>
+
+                <a href="/dashboard" class="login-btn">
+                    Dashboard
+                </a>
+
+            <% } %>
+
+            <a href="/logout" class="signup-btn">
+                Log Out
+            </a>
+
+        <% } else { %>
+
+            <a href="/login" class="login-btn">
+                Log In
+            </a>
+
+            <a href="/register" class="signup-btn">
+                Sign Up
+            </a>
+
+        <% } %>
+
+    </div>
+
+    <!-- MOBILE MENU BUTTON -->
+    <button
+        class="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+</nav>
+
+
+<!-- MOBILE NAVIGATION -->
+<div class="mobile-menu" id="mobile-navigation">
+
+    <div class="mobile-menu-header">
+
+        <a href="/" class="mobile-menu-logo">
+            <img src="/images/JobVerse-logo.png" alt="JobVerse">
+        </a>
+
+        <button
+            class="mobile-menu-close"
+            type="button"
+            aria-label="Close navigation"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="mobile-menu-links">
+
+        <a href="/">
+            <span>01</span>
+            <strong>Home</strong>
+            <b>→</b>
+        </a>
+
+        <a href="/jobs">
+            <span>02</span>
+            <strong>Find Jobs</strong>
+            <b>→</b>
+        </a>
+
+        <a href="/companies">
+            <span>03</span>
+            <strong>Companies</strong>
+            <b>→</b>
+        </a>
+
+        <a href="/about">
+            <span>04</span>
+            <strong>About</strong>
+            <b>→</b>
+        </a>
+
+        <a href="/contact">
+            <span>05</span>
+            <strong>Contact</strong>
+            <b>→</b>
+        </a>
+
+    </div>
+
+
+    <div class="mobile-menu-actions">
+
+        <% if (session && session.userId) { %>
+
+            <% if (session.userRole === "recruiter") { %>
+
+                <a href="/recruiter/dashboard" class="mobile-login">
+                    Dashboard
+                </a>
+
+            <% } else { %>
+
+                <a href="/dashboard" class="mobile-login">
+                    Dashboard
+                </a>
+
+            <% } %>
+
+            <a href="/logout" class="mobile-signup">
+                Log Out
+            </a>
+
+        <% } else { %>
+
+            <a href="/login" class="mobile-login">
+                Log In
+            </a>
+
+            <a href="/register" class="mobile-signup">
+                Sign Up
+            </a>
+
+        <% } %>
+
+    </div>
+
+</div>
+
+
+<div class="mobile-menu-overlay"></div>
+
+
+<script>
+(function () {
+
+    const toggle = document.querySelector(".mobile-menu-toggle");
+    const menu = document.querySelector(".mobile-menu");
+    const close = document.querySelector(".mobile-menu-close");
+    const overlay = document.querySelector(".mobile-menu-overlay");
+
+    if (!toggle || !menu || !close || !overlay) return;
+
+    function openMenu() {
+        menu.classList.add("is-open");
+        overlay.classList.add("is-visible");
+        toggle.classList.add("is-open");
+
+        toggle.setAttribute("aria-expanded", "true");
+        document.body.classList.add("mobile-menu-open");
+    }
+
+    function closeMenu() {
+        menu.classList.remove("is-open");
+        overlay.classList.remove("is-visible");
+        toggle.classList.remove("is-open");
+
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("mobile-menu-open");
+    }
+
+    toggle.addEventListener("click", openMenu);
+    close.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+
+    menu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", closeMenu);
+    });
+
+})();
+</script>

@@ -9,25 +9,7 @@
 
 <body>
 
-<nav class="navbar">
-    <div class="logo">
-        <a href="/">
-            <img src="/images/jobverse-logo.png" alt="JobVerse">
-        </a>
-    </div>
-
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/jobs" class="active">Find Jobs</a>
-        <a href="/companies">Companies</a>
-        <a href="/about">About</a>
-    </div>
-
-    <div class="nav-actions">
-        <a href="/login" class="login-btn">Log In</a>
-        <a href="/register" class="signup-btn">Sign Up</a>
-    </div>
-</nav>
+<%- include("partials/navbar") %>
 
 <main class="jobs-page-v2">
 
@@ -184,11 +166,29 @@
             </div>
 
         <% } else { %>
+<!-- Mobile Filters Button -->
+<button type="button" class="mobile-filter-trigger" id="mobileFilterOpen">
+    <span>☷</span>
+    <span>Filters</span>
+    <span class="mobile-filter-arrow">→</span>
+</button>
 
+<!-- Mobile Filter Overlay -->
+<div class="mobile-filter-overlay" id="mobileFilterOverlay"></div>
             <div class="jobs-v2-layout">
 
                 <!-- SIDEBAR -->
                 <aside class="jobs-v2-sidebar">
+                    <div class="mobile-filter-header">
+    <div>
+        <span class="mobile-filter-label">FILTERS</span>
+        <h3>Refine your search</h3>
+    </div>
+
+    <button type="button" id="mobileFilterClose" aria-label="Close filters">
+        ×
+    </button>
+</div>
 
                     <div class="jobs-v2-sidebar-head">
                         <div>
@@ -350,6 +350,31 @@
     </section>
 
 </main>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const filterPanel = document.querySelector(".jobs-v2-sidebar");
+    const openButton = document.getElementById("mobileFilterOpen");
+    const closeButton = document.getElementById("mobileFilterClose");
+    const overlay = document.getElementById("mobileFilterOverlay");
 
+    if (!filterPanel || !openButton || !closeButton || !overlay) return;
+
+    function openFilters() {
+        filterPanel.classList.add("mobile-filter-open");
+        overlay.classList.add("mobile-filter-overlay-open");
+        document.body.classList.add("filter-menu-open");
+    }
+
+    function closeFilters() {
+        filterPanel.classList.remove("mobile-filter-open");
+        overlay.classList.remove("mobile-filter-overlay-open");
+        document.body.classList.remove("filter-menu-open");
+    }
+
+    openButton.addEventListener("click", openFilters);
+    closeButton.addEventListener("click", closeFilters);
+    overlay.addEventListener("click", closeFilters);
+});
+</script>
 </body>
 </html>
