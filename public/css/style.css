@@ -10779,3 +10779,447 @@ body {
     }
 
 }
+/* =========================================================
+   JOBVERSE — FINAL MOBILE HOMEPAGE FIX
+   Desktop remains completely unchanged.
+========================================================= */
+
+@media (max-width: 700px) {
+
+    /* ---------- GLOBAL MOBILE SAFETY ---------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    .navbar {
+        height: 68px;
+        padding: 0 18px;
+        gap: 12px;
+    }
+
+    .logo {
+        flex: 0 0 auto;
+    }
+
+    .logo img {
+        width: 128px;
+        max-width: 100%;
+    }
+
+    /*
+       Keep navigation usable without allowing
+       the desktop links to overflow the screen.
+    */
+    .nav-links {
+        display: none;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+        gap: 8px;
+    }
+
+    .nav-actions .login-btn,
+    .nav-actions .signup-btn {
+        padding: 8px 11px;
+        font-size: 12px;
+        white-space: nowrap;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .compact-hero {
+        padding: 42px 18px 0;
+        overflow: hidden;
+    }
+
+    .hero-redesign {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+    }
+
+    .hero-copy {
+        width: 100%;
+        padding: 8px 0 28px;
+    }
+
+    .compact-hero .hero-badge {
+        max-width: 100%;
+        margin-bottom: 18px;
+        padding: 8px 12px;
+        font-size: 9px;
+        letter-spacing: 1px;
+        white-space: nowrap;
+    }
+
+    .compact-hero .hero-copy h1 {
+        max-width: 100%;
+        font-size: clamp(2.7rem, 12vw, 4rem);
+        line-height: .98;
+        letter-spacing: -0.06em;
+    }
+
+    .compact-hero .hero-copy > p {
+        max-width: 100%;
+        margin: 20px 0 24px;
+        font-size: 15px;
+        line-height: 1.65;
+    }
+
+    /* ---------- SEARCH BOX ---------- */
+
+    .compact-hero .search-box {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px;
+        border-radius: 18px;
+    }
+
+    .compact-hero .search-field {
+        width: 100%;
+        padding: 14px 12px;
+        min-height: 68px;
+    }
+
+    .compact-hero .search-field label {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
+
+    .compact-hero .search-field input {
+        font-size: 14px;
+    }
+
+    .compact-hero .search-icon,
+    .compact-hero .location-icon {
+        font-size: 19px;
+    }
+
+    .compact-hero .search-divider {
+        width: calc(100% - 24px);
+        height: 1px;
+        margin: 0 12px;
+    }
+
+    .compact-hero .search-btn {
+        width: 100%;
+        min-height: 54px;
+        margin-top: 6px;
+        border-radius: 12px;
+        font-size: 15px;
+    }
+
+    /* ---------- POPULAR SEARCHES ---------- */
+
+    .compact-hero .popular-searches {
+        width: 100%;
+        margin-top: 16px;
+        justify-content: flex-start;
+        gap: 7px;
+        line-height: 1;
+    }
+
+    .compact-hero .popular-searches > span {
+        width: 100%;
+        margin-bottom: 2px;
+    }
+
+    .compact-hero .popular-searches a {
+        padding: 7px 11px;
+        border-radius: 8px;
+        font-size: 11px;
+    }
+
+    /* =====================================================
+       HERO VISUAL
+       Completely redesigned for mobile.
+       No scaling.
+       No horizontal overflow.
+       No floating cards.
+    ===================================================== */
+
+    .hero-visual {
+        width: 100%;
+        max-width: 100%;
+        min-height: auto;
+        margin: 12px 0 0;
+        transform: none !important;
+        overflow: visible;
+    }
+
+    /* Remove decorative circles on small screens */
+    .hero-orbit {
+        display: none;
+    }
+
+    /* Remove desktop floating cards */
+    .floating-role {
+        display: none;
+    }
+
+    /* Main jobs card becomes a normal mobile card */
+    .hero-panel {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-width: 100%;
+        transform: none !important;
+        padding: 20px 16px 12px;
+        border-radius: 20px;
+        box-shadow:
+            0 20px 45px rgba(15, 23, 42, .09),
+            0 5px 18px rgba(37, 99, 235, .05);
+    }
+
+    .hero-panel:hover {
+        transform: none !important;
+    }
+
+    .panel-top {
+        margin-bottom: 16px;
+    }
+
+    .panel-eyebrow {
+        font-size: 9px;
+    }
+
+    .panel-top h3 {
+        font-size: 22px;
+    }
+
+    .panel-search {
+        margin-bottom: 8px;
+        padding: 11px 12px;
+        font-size: 11px;
+    }
+
+    .panel-role {
+        min-width: 0;
+        grid-template-columns: 38px minmax(0, 1fr) auto;
+        gap: 10px;
+        padding: 13px 5px;
+    }
+
+    .mini-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    .panel-role strong {
+        font-size: 12px;
+    }
+
+    .panel-role > div:nth-child(2) span {
+        font-size: 10px;
+    }
+
+    .mini-arrow {
+        font-size: 15px;
+    }
+
+    /* ---------- DISCOVER / EXPLORE / APPLY ---------- */
+
+    .hero-bottom {
+        width: 100%;
+        margin-top: 18px;
+        padding: 16px 0 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .hero-value {
+        min-height: 58px;
+        justify-content: flex-start;
+        padding: 10px 4px;
+        border-right: 0;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .hero-value:last-child {
+        border-bottom: 0;
+    }
+
+    .value-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        font-size: 15px;
+    }
+
+    .hero-value strong {
+        font-size: 13px;
+    }
+
+    .hero-value div > span {
+        font-size: 10px;
+    }
+
+    /* ---------- CATEGORIES ---------- */
+
+    .categories-section {
+        padding: 52px 18px;
+    }
+
+    .categories-section .section-heading {
+        margin-bottom: 22px;
+        gap: 8px;
+    }
+
+    .categories-section .section-heading h2 {
+        font-size: 30px;
+        letter-spacing: -1px;
+    }
+
+    .categories-section .category-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .categories-section .category-card {
+        min-height: 120px;
+        padding: 18px;
+    }
+
+    /* ---------- HOW IT WORKS ---------- */
+
+    .how-section {
+        padding: 55px 18px;
+    }
+
+    .how-section .section-center h2 {
+        font-size: 30px;
+    }
+
+    /* ---------- EMPLOYER ---------- */
+
+    .employer-section {
+        padding: 55px 18px;
+    }
+
+    .employer-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .employer-actions a,
+    .employer-actions button {
+        width: 100%;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    .footer {
+        overflow: hidden;
+    }
+
+    .footer-top {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .footer-logo img {
+        width: 145px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .footer-bottom {
+        padding-left: 18px;
+        padding-right: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 7px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 420px) {
+
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .logo img {
+        width: 120px;
+    }
+
+    .nav-actions {
+        gap: 5px;
+    }
+
+    .nav-actions .login-btn,
+    .nav-actions .signup-btn {
+        padding: 7px 9px;
+        font-size: 11px;
+    }
+
+    .compact-hero {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .compact-hero .hero-badge {
+        font-size: 8px;
+        letter-spacing: .8px;
+    }
+
+    .compact-hero .hero-copy h1 {
+        font-size: 44px;
+    }
+
+    .compact-hero .hero-copy > p {
+        font-size: 14px;
+    }
+
+    .hero-panel {
+        padding: 18px 13px 10px;
+    }
+
+    .panel-top h3 {
+        font-size: 20px;
+    }
+
+    .panel-role {
+        grid-template-columns: 35px minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .mini-logo {
+        width: 35px;
+        height: 35px;
+    }
+
+    .panel-role strong {
+        font-size: 11px;
+    }
+
+    .panel-role > div:nth-child(2) span {
+        font-size: 9px;
+    }
+
+    .categories-section,
+    .how-section,
+    .employer-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
